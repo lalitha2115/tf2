@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: install webserver on amazon
+    yum:
+      name: "{{ webserveronamazon }}"
+      state: present
+    when: ansible_os_family =="RedHat"
+  - name: start webserver of amazon
+    service:
+      name: "{{ webserveronamazon }}"
+      state: started
+    when: ansible_os_family =="RedHat"
+    
